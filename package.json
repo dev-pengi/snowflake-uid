@@ -1,0 +1,42 @@
+{
+  "name": "snowflake-uid",
+  "version": "1.0.0",
+  "description": "Generate unique Snowflake IDs based on the Snowflake algorithm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "files": [
+    "lib /**/*"
+  ],
+  "keywords": [
+    "snowflake",
+    "distributed",
+    "computing",
+    "database",
+    "sharding",
+    "event",
+    "sourcing",
+    "distributed",
+    "messaging",
+    "distributed",
+    "ID",
+    "process",
+    "ID",
+    "worker",
+    "ID",
+    "timestamp",
+    "ID",
+    "generation",
+    "distributed",
+    "systems",
+    "unique",
+    "ID"
+  ],
+  "author": "pengi-dev",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  }
+}
