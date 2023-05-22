@@ -1,6 +1,6 @@
 {
   "name": "snowflake-uid",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "Generate unique Snowflake IDs based on the Snowflake algorithm",
   "main": "index.js",
   "scripts": {
@@ -8,8 +8,9 @@
     "build": "tsc"
   },
   "files": [
-    "lib /**/*"
+    "lib/**/*"
   ],
+
   "keywords": [
     "snowflake",
     "distributed",
@@ -21,13 +22,9 @@
     "distributed",
     "messaging",
     "distributed",
-    "ID",
     "process",
-    "ID",
     "worker",
-    "ID",
     "timestamp",
-    "ID",
     "generation",
     "distributed",
     "systems",
