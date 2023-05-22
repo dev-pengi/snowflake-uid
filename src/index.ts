@@ -1,4 +1,4 @@
-export default class Snowflake {
+export class Snowflake {
     private readonly EPOCH: number;
     private static increment = 0;
     private static lastTimestamp = -1;
