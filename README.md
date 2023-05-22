@@ -18,7 +18,7 @@ The module provides options for configuration:
 - **processId** (optional): The ID of the process generating the IDs. It further refines the uniqueness in cases where multiple processes are running on a single machine.
 
 ```js
-const Snowflake = require('snowflake-uid');
+const { Snowflake } = require('snowflake-uid');
 
 const config = {
   epoch: 1546300800000, // Example: Set the epoch to January 1, 2019 at 00:00:00
