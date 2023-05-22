@@ -2,8 +2,10 @@ export class Snowflake {
     private readonly EPOCH: number;
     private static increment = 0;
     private static lastTimestamp = -1;
+    private readonly workerId: number;
+    private readonly processId: number;
 
-    constructor(private readonly workerId: number = 1, private readonly processId: number = 1, epoch: number) {
+    constructor({ epoch, workerId = 1, processId = 1 }: { epoch: number; workerId?: number; processId?: number }) {
         const currentTimestamp = Date.now();
 
         if (epoch > currentTimestamp) {
@@ -11,6 +13,8 @@ export class Snowflake {
         }
 
         this.EPOCH = epoch;
+        this.workerId = workerId;
+        this.processId = processId;
     }
 
     generate(): string {
