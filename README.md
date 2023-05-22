@@ -10,18 +10,7 @@ You can install the module using npm:
 npm install snowflake-uid
 ```
 
-## Usage
-
-To generate a Snowflake ID, you can use the **generate** method of the Snowflake class:
-
-```javascript
-const Snowflake = require('snowflake-uid');
-
-const snowflakeId = Snowflake.generate();
-console.log(snowflakeId);
-```
-
-## Configuration
+## Configuration & Usage
 The module provides options for configuration:
 
 - **epoch** (required): The starting timestamp in milliseconds since the UNIX epoch. It determines the time range of the generated Snowflake IDs.
