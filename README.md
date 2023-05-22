@@ -21,9 +21,9 @@ The module provides options for configuration:
 const Snowflake = require('snowflake-uid');
 
 const config = {
-  epoch: 1609459200000, // Example: Set the epoch to January 1, 2021
-  workerId: 1, // Example: Set the worker ID to 1 (optional)
-  processId: 1, // Example: Set the process ID to 1 (optional)
+  epoch: 1546300800000, // Example: Set the epoch to January 1, 2019 at 00:00:00
+  workerId: 1, // Example: Set the worker ID to 1
+  processId: 1, // Example: Set the process ID to 1
 };
 
 const snowflake = new Snowflake(config);
@@ -31,4 +31,4 @@ const snowflakeId = snowflake.generate();
 console.log(snowflakeId);
 ```
 
-Note: Ensure that the epoch value is set correctly and matches the time range you intend to generate Snowflake IDs for.
+Note: make sure that the epoch value is set correctly and matches the time range you intend to generate Snowflake IDs for.
