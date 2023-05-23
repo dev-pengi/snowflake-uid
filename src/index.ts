@@ -1,9 +1,12 @@
 export class Snowflake {
     private readonly EPOCH: number;
-    private static increment = 0;
     private static lastTimestamp = -1;
+    private static sequence = 0;
     private readonly workerId: number;
     private readonly processId: number;
+    private static readonly WORKER_ID_BITS = 5;
+    private static readonly PROCESS_ID_BITS = 5;
+    private static readonly SEQUENCE_BITS = 12;
 
     constructor({ epoch, workerId = 1, processId = 1 }: { epoch: number; workerId?: number; processId?: number }) {
         const currentTimestamp = Date.now();
@@ -25,23 +28,25 @@ export class Snowflake {
         }
 
         if (timestamp === Snowflake.lastTimestamp) {
-            Snowflake.increment = (Snowflake.increment + 1) % 4096; // Increment and reset if it exceeds 4095
-            if (Snowflake.increment === 0) {
+            Snowflake.sequence = (Snowflake.sequence + 1) & ((1 << Snowflake.SEQUENCE_BITS) - 1); // Increment and reset if it exceeds the sequence bits
+            if (Snowflake.sequence === 0) {
                 timestamp = this.waitUntilNextMillis();
             }
         } else {
-            Snowflake.increment = 0;
+            Snowflake.sequence = 0;
         }
 
         Snowflake.lastTimestamp = timestamp;
 
-        const timestampBits = (timestamp - this.EPOCH).toString(2).padStart(42, '0');
-        const workerIdBits = this.workerId.toString(2).padStart(5, '0');
-        const processIdBits = this.processId.toString(2).padStart(5, '0');
-        const incrementBits = Snowflake.increment.toString(2).padStart(12, '0');
+        const timestampOffset = timestamp - this.EPOCH;
+        const timestampBits = timestampOffset.toString(2).padStart(42, '0');
 
-        const idBinary = `${timestampBits}${workerIdBits}${processIdBits}${incrementBits}`;
-        const idDecimal = parseInt(idBinary, 2).toString();
+        const workerIdBits = this.workerId.toString(2).padStart(Snowflake.WORKER_ID_BITS, '0');
+        const processIdBits = this.processId.toString(2).padStart(Snowflake.PROCESS_ID_BITS, '0');
+        const sequenceBits = Snowflake.sequence.toString(2).padStart(Snowflake.SEQUENCE_BITS, '0');
+
+        const idBinary = `${timestampBits}${workerIdBits}${processIdBits}${sequenceBits}`;
+        const idDecimal = BigInt('0b' + idBinary).toString();
 
         return idDecimal;
     }
