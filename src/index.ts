@@ -1,9 +1,9 @@
-export interface SnowFlakeConfig {
+export type SnowFlakeConfig = {
   epoch: number;
   workerId?: number;
   processId?: number;
   toString?: boolean;
-}
+};
 export class Snowflake {
   private readonly EPOCH: number;
   private static lastTimestamp = -1;
