@@ -1,6 +1,6 @@
 {
   "name": "snowflake-uid",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Generate unique Snowflake IDs based on the Snowflake algorithm",
   "main": "lib/index.js",
   "types": "lib/index.d.ts", 
